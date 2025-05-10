@@ -7,7 +7,10 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://task-management-1-nni5.onrender.com/', // replace with your frontend domain
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB connection
