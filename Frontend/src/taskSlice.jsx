@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = 'https://task-management-dayq.onrender.com/api/tasks';
 
 // Async thunks
 export const fetchTasks = createAsyncThunk(
