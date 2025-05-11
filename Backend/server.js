@@ -10,7 +10,7 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'https://task-management-1-nni5.onrender.com', // Ensure no trailing slash
+  origin: 'https://taskmanagement-fe.onrender.com', // Ensure no trailing slash
   credentials: true
 }));
 
