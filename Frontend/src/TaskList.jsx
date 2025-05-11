@@ -47,9 +47,11 @@ function TaskList() {
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>My Tasks</h2>
-        <Link to="/add" className="btn btn-primary">Add New Task</Link>
+        <button onClick={() => navigate("/add")} className="btn btn-primary">
+          Add New Task
+        </button>
       </div>
-      
+
       {tasks.length === 0 ? (
         <div className="alert alert-info" role="alert">
           No tasks yet. Add some tasks to get started!
@@ -57,36 +59,56 @@ function TaskList() {
       ) : (
         <div className="list-group">
           {tasks.map((task) => (
-            <div 
-              key={task._id} 
-              id={`task-${task._id}`} 
-              className="list-group-item list-group-item-action mb-2"
+            <div
+              key={task._id}
+              id={`task-${task._id}`}
+              className="card shadow-sm mb-3 border-0"
+              style={{ backgroundColor: "#f8f9fa", borderRadius: "12px" }}
             >
-              <div className="d-flex justify-content-between align-items-center">
-                <h5 className={task.completed ? "text-decoration-line-through text-muted mb-0" : "mb-0"}>
-                  {task.title}
-                </h5>
-                <span className={`badge ${task.completed ? "bg-success" : "bg-warning text-dark"}`}>
-                  {task.completed ? "Completed" : "Pending"}
-                </span>
-              </div>
-              
-              <div className="mt-3 d-flex">
-                <button 
-                  className={`btn ${task.completed ? "btn-outline-secondary" : "btn-success"} btn-sm me-2`}
-                  onClick={() => handleToggle(task._id, task.completed)}
-                >
-                  {task.completed ? "Mark Incomplete" : "Mark Complete"}
-                </button>
-                <Link to={`/task/${task._id}`} className="btn btn-info btn-sm text-white me-2">
-                  View Details
-                </Link>
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => handleDelete(task._id)}
-                >
-                  Delete
-                </button>
+              <div className="card-body">
+                <div className="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h5
+                      className={`card-title ${
+                        task.completed
+                          ? "text-decoration-line-through text-muted"
+                          : ""
+                      }`}
+                    >
+                      {task.title}
+                    </h5>
+                    <span
+                      className={`badge ${
+                        task.completed ? "bg-success" : "bg-warning text-dark"
+                      }`}
+                    >
+                      {task.completed ? "Completed" : "Pending"}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => handleDelete(task._id)}
+                    className="btn-close"
+                    aria-label="Delete"
+                  />
+                </div>
+
+                <div className="mt-3 d-flex flex-wrap gap-2">
+                  <button
+                    className={`btn btn-sm ${
+                      task.completed ? "btn-outline-secondary" : "btn-success"
+                    }`}
+                    onClick={() => handleToggle(task._id, task.completed)}
+                  >
+                    {task.completed ? "Mark Incomplete" : "Mark Complete"}
+                  </button>
+
+                  <button
+                    onClick={() => navigate(`/task/${task._id}`)}
+                    className="btn btn-sm btn-info text-white"
+                  >
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
           ))}
