@@ -24,28 +24,41 @@ function AddTask() {
   };
   
   return (
-    <div>
-      <h2>Add New Task</h2>
+    <div className="container mt-4">
+      <h2 className="mb-3">Add New Task</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">Title:</label>
           <input
             id="title"
             type="text"
+            className="form-control"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter task title"
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">Description:</label>
           <textarea
             id="description"
+            className="form-control"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows="3"
+            placeholder="Enter task description"
           ></textarea>
         </div>
-        <button type="submit">Add Task</button>
+        <div className="mb-3">
+          <button type="submit" className="btn btn-primary me-2">Add Task</button>
+          <button 
+            type="button" 
+            className="btn btn-secondary"
+            onClick={() => navigate('/')}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
